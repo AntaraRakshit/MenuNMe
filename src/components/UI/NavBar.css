@@ -1,0 +1,52 @@
+/* NavBar.css */
+.nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.nav .site-title {
+    color: white;
+    text-decoration: none;
+    font-size: 2em; /* Increased font size */
+    font-weight: bold;
+    margin: 0; /* Ensure no extra margin */
+}
+
+.nav .nav-list {
+    list-style: none;
+    display: flex; /* Use flexbox to align items in a row */
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Vertically align items */
+}
+
+.nav .nav-list li {
+    display: inline; /* Ensure items are displayed inline */
+}
+
+.nav .nav-list li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav .nav-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure no default margin and padding for body */
+body {
+    margin: 0;
+    padding-top: 60px; /* Adjust based on the height of your navbar */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
