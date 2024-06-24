@@ -1,0 +1,26 @@
+/* src/IngredientCard.css */
+
+.ingredient-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .ingredient-card.selected {
+    border-color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  .ingredient-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .ingredient-card h3 {
+    margin: 10px 0;
+  }
+  
