@@ -1,7 +1,8 @@
 // src/MenuPage.js
 import React, { useState } from 'react';
-import IngredientCard from '../components/IngredientCard';;
-import DropdownChecklist from '../components/DropdownChecklist';
+import { useNavigate } from 'react-router-dom';
+import IngredientCard from '../components/IngredientCard';
+import RadioDropdown from '../components/RadioDropdown';
 import '../global/styles.css';
 
 const categories = [
@@ -12,21 +13,32 @@ const categories = [
   { id: 5, name: 'Carbs', image: 'path/to/carbs.jpg' }
 ];
 
-const checklistItems = [
-  'External and internal research',
-  'Quantitative observations on patterns',
-  'Review analytics and past research',
-  'Competitive landscape',
-  'Existing patterns in use',
-  'Constraints',
-  'Concept'
+
+const prepTimeOptions = [
+  'Less than 30 minutes',
+  '30-60 minutes',
+  'More than 60 minutes'
+];
+
+const dietOptions = [
+  'Vegetarian',
+  'Vegan',
+  'Gluten-Free',
+  'No Preference'
 ];
 
 const MenuPage = () => {
   const [selectedCount, setSelectedCount] = useState(0);
+  const [prepTime, setPrepTime] = useState(null);
+  const [diet, setDiet] = useState(null);
+  const navigate = useNavigate();
 
   const handleSelection = (isSelected) => {
     setSelectedCount(prevCount => isSelected ? prevCount + 1 : prevCount - 1);
+  };
+
+  const handleGenerateMenu = () => {
+    navigate('/generated-menu');
   };
 
   return (
@@ -42,11 +54,16 @@ const MenuPage = () => {
             onSelect={handleSelection}
           />
         ))}
+        </div>
+        <div className="selected-count">{selectedCount}/5 items selected</div>
+        <div className="additional-details">
+          <p>Continue filling out a few more details to help us create the perfect convenient menu of your dreams.</p>
+          <RadioDropdown label="Prep Time" options={prepTimeOptions} onSelect={setPrepTime} />
+          <RadioDropdown label="Diet" options={dietOptions} onSelect={setDiet} />
+          <button className="generate-menu-button" onClick={handleGenerateMenu}>Generate Menu</button>
+        </div>
       </div>
-      <button className="my-pantry-button">My Pantry</button>
-      <div className="selected-count">{selectedCount}/5 items selected</div>      
-    </div>
-  );
-};
+    );
+  };
 
 export default MenuPage;

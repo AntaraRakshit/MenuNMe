@@ -1,0 +1,47 @@
+/* src/GeneratedMenu.css */
+
+.generated-menu {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .generated-menu table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .generated-menu th,
+  .generated-menu td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .generated-menu th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .generated-menu td {
+    background-color: #000;
+  }
+  
+  .generated-menu .buttons {
+    margin-top: 20px;
+  }
+  
+  .generated-menu button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .generated-menu button:hover {
+    background-color: #0056b3;
+  }
+  
