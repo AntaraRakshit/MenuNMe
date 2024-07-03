@@ -1,0 +1,37 @@
+.ingredient-category {
+    margin-bottom: 1rem;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category-header img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.category-header h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.category-header span {
+    margin-left: 10px;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    background-color: #e57373;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    border-radius: 4px;
+}

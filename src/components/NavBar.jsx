@@ -5,10 +5,10 @@ function NavBar(){
             <a href="/" className="site-title">Site Name</a>
             <ul>
                 <li>
-                    <a href="/pricing">Pricing</a>
+                    <a href="/pantry-page">Pantry Page</a>
                 </li>
                 <li>
-                    <a href="/about">About</a>
+                    <a href="/generated-meal-plan">Generated Meal Plan</a>
                 </li>
             </ul>
         </nav>
