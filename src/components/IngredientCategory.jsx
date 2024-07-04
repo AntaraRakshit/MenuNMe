@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import './IngredientCategory.css';
 
-const IngredientCategory = ({ category, items }) => {
+const IngredientCategory = ({ category, items, onIngredientChange }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleCheckboxChange = (e) => {
+        const { name, checked } = e.target;
+        onIngredientChange(category, name, checked);
     };
 
     return (
@@ -18,8 +23,13 @@ const IngredientCategory = ({ category, items }) => {
                 <div className="items">
                     {items.map((item, index) => (
                         <div key={index} className="item">
-                            <input type="checkbox" id={item} name={item} />
-                            <label htmlFor={item}>{item}</label>
+                            <input
+                                type="checkbox"
+                                id={`${category}-${item}`}
+                                name={item}
+                                onChange={handleCheckboxChange}
+                            />
+                            <label htmlFor={`${category}-${item}`}>{item}</label>
                         </div>
                     ))}
                 </div>

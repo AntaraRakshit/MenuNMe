@@ -8,3 +8,37 @@
     padding: 1rem;
     text-align: center;
 }
+
+.submit-button {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.response-data {
+    margin-top: 2rem;
+    background-color: #000;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.response-data h2 {
+    margin-top: 0;
+}
+
+.response-data pre {
+    background-color: #000;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
