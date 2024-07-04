@@ -1,12 +1,26 @@
 .recipe-details {
-    background-color: #cddc39;
+    width: 75%;
     padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 8px;
+    overflow-y: auto;
+    max-height: 50vh; /* Limit the height to avoid full page scroll */
 }
 
 .recipe-details img {
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+.ingredients, .instructions {
+    margin-top: 1rem;
+}
+
+.ingredients ul, .instructions ol {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+}
+
+.additional-info {
+    margin-top: 1rem;
 }

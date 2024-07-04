@@ -10,7 +10,7 @@ const DailyMenu = ({ day, meals, onDishClick }) => {
             {Object.keys(meals).map((mealType, index) => (
                 <div key={index} className="meal">
                     <h3>{mealType}</h3>
-                    <ul>
+                    <ul className="daily-menu-content">
                         {Object.keys(meals[mealType]).map((dishType, idx) => {
                             const dish = meals[mealType][dishType];
                             return dish ? (
