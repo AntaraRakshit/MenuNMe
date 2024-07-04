@@ -6,23 +6,28 @@ const RecipeDetails = ({ recipe }) => {
 
     return (
         <div className="recipe-details">
-            <h2>{recipe.name}</h2>
-            <img src={recipe.image} alt={recipe.name} />
+            <h2>{recipe.TranslatedRecipeName}</h2>
+            {recipe["image-url"] && <img src={recipe["image-url"]} alt={recipe.TranslatedRecipeName} />}
             <div className="ingredients">
                 <h3>Ingredients</h3>
                 <ul>
-                    {recipe.ingredients.map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
+                    {Object.entries(recipe.TranslatedIngredients).map(([ingredient, quantity], index) => (
+                        <li key={index}>{`${ingredient}: ${quantity}`}</li>
                     ))}
                 </ul>
             </div>
             <div className="instructions">
                 <h3>Instructions</h3>
-                <ol>
-                    {recipe.instructions.map((instruction, index) => (
-                        <li key={index}>{instruction}</li>
-                    ))}
-                </ol>
+                <p>{recipe.TranslatedInstructions}</p>
+            </div>
+            <div className="additional-info">
+                <p><strong>Cuisine:</strong> {recipe.Cuisine}</p>
+                <p><strong>Course:</strong> {recipe.Course}</p>
+                <p><strong>Prep Time:</strong> {recipe.PrepTimeInMins} mins</p>
+                <p><strong>Cook Time:</strong> {recipe.CookTimeInMins} mins</p>
+                <p><strong>Total Time:</strong> {recipe.TotalTimeInMins} mins</p>
+                <p><strong>Servings:</strong> {recipe.Servings}</p>
+                <p><strong>URL:</strong> <a href={recipe.URL} target="_blank" rel="noopener noreferrer">{recipe.URL}</a></p>
             </div>
         </div>
     );
