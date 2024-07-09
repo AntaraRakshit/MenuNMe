@@ -4,19 +4,20 @@ import './PantryPage.css';
 import IngredientList from '../components/IngredientList';
 import { MealplanContext } from '../contexts/MealplanContext';
 
+import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+
 const categories = [
     { name: 'Carbs', items: ['Rice', 'Roti', 'Something'] },
     { name: 'Veggies', items: ['Carrot', 'Broccoli', 'Something'] },
     { name: 'Protein', items: ['Eggs', 'Chicken', 'Something'] },
-    { name: 'Dal', items: ['dal', 'Split Peas', 'Something'] },
-    { name: 'Dairy', items: ['Milk', 'Cheese', 'Something'] },
-    { name: 'Spices', items: ['Salt', 'Pepper', 'Something'] },
-    { name: 'Fruits', items: ['Apple', 'Banana', 'Something'] },
+    { name: 'Dal', items: ['dal', 'green moong', 'chana dal'] }
 ];
 
 const PantryPage = () => {
     const [selectedIngredients, setSelectedIngredients] = useState({});
     const { setResponseData } = useContext(MealplanContext);
+    const { isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleIngredientChange = (category, item, isChecked) => {
@@ -43,7 +44,7 @@ const PantryPage = () => {
         };
 
         try {
-            const response = await fetch('https://34h0hdhgzh.execute-api.ap-south-1.amazonaws.com/test/mealplans/create-mealplan', {
+            const response = await fetch('https://0j5utt1jg5.execute-api.ap-south-1.amazonaws.com/test/create-mealplan', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,6 +63,8 @@ const PantryPage = () => {
     };
 
     return (
+        <>
+        {isAuthenticated?(
         <div className="pantry-page">
             <header className="pantry-header">
                 <h1>Enter Your Pantry Ingredients</h1>
@@ -70,7 +73,18 @@ const PantryPage = () => {
             <button className="submit-button" onClick={handleSubmit}>
                 Submit
             </button>
-        </div>
+        </div>):(
+                            <div>
+                            <Link to="/signup">
+                                <button>Sign Up</button>
+                            </Link>
+                            <Link to="/login">
+                                <button>Login</button>
+                            </Link>
+                        </div>
+        )
+    }
+    </>
     );
 };
 

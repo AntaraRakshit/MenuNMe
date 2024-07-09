@@ -136,6 +136,7 @@ const SignUp = () => {
         <div>
             {!isConfirmed && (
                 <>
+                
                     <form onSubmit={onSubmit}>
                         <label htmlFor="username">Username</label>
                         <input
@@ -158,6 +159,7 @@ const SignUp = () => {
                             onChange={(event) => setPassword(event.target.value)}
                             disabled={loading}
                         />
+                        <p>Password must contain at least 8 characters. Must conatin at least 1 capital letter, 1 number, 1 special character.</p>
                         <button type="submit" disabled={loading}>Sign Up</button>
                     </form>
 

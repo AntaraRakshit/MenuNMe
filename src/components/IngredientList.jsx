@@ -6,8 +6,8 @@ const IngredientList = ({ categories, onIngredientChange }) => {
     return (
         <div className="ingredient-list">
             {categories.map((category, index) => (
-                <IngredientCategory
-                    key={index}
+                <IngredientCategory  
+                    key={index}                  
                     category={category.name}
                     items={category.items}
                     onIngredientChange={onIngredientChange}

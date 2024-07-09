@@ -10,6 +10,9 @@ function NavBar(){
                 <li>
                     <a href="/generated-meal-plan">Generated Meal Plan</a>
                 </li>
+                <li>
+                    <a href="/saved-meal-plans">Saved Meal Plans</a>
+                </li>
             </ul>
         </nav>
     );

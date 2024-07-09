@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import SignUp from './Pages/SignUp';
-import Login from './Pages/Login';
-import PantryPage from './Pages/PantryPage';
-import GeneratedMealPlan from './Pages/GeneratedMealPlan';
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import PantryPage from './pages/PantryPage';
+import GeneratedMealPlan from './pages/GeneratedMealPlan';
+import SavedMealPlans from './pages/SavedMealPlans';
 import { MealplanProvider } from './contexts/MealplanContext';
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/pantry-page" element={<PantryPage />} />
                     <Route path="/generated-meal-plan" element={<GeneratedMealPlan />} />
+                    <Route path="/saved-meal-plans" element={<SavedMealPlans />} />
                 </Routes>
             </Router>
         </MealplanProvider>

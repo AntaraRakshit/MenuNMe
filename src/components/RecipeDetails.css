@@ -1,5 +1,5 @@
 .recipe-details {
-    width: 75%;
+    width: 100%;
     padding: 1rem;
     overflow-y: auto;
     max-height: 50vh; /* Limit the height to avoid full page scroll */
