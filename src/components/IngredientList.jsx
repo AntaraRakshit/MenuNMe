@@ -5,11 +5,11 @@ import IngredientCategory from './IngredientCategory';
 const IngredientList = ({ categories, onIngredientChange }) => {
     return (
         <div className="ingredient-list">
-            {categories.map((category, index) => (
-                <IngredientCategory  
-                    key={index}                  
+            {categories.map((category) => (
+                <IngredientCategory                    
                     category={category.name}
                     items={category.items}
+                    catImage={category.imagepath}
                     onIngredientChange={onIngredientChange}
                 />
             ))}

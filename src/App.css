@@ -4,10 +4,10 @@ h1 {
   margin-left: 20px;
 }
 body {
-  background-color: #222629;
+  background-color: #384b38;
 }
 label {
-  color: #86C232;
+  color: #ffffff;
   font-family: system-ui;
   font-size: 20px;
   margin-left: 20px;
@@ -15,8 +15,8 @@ label {
 }
 button {
   background-color: #86C232;
-  border-color: #86C232;
-  color: #FFFFFF;
+  border-color: #ffffff;
+  color: #ffffff;
   font-family: system-ui;
   font-size: 20px;
   font-weight: bold;

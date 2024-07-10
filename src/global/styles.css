@@ -1,29 +1,44 @@
-/* src/styles.css */
-
+/* Global styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu-page {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .my-pantry-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .selected-count {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
+  font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+  background-color: #2252a5;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+
+h1 {  
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Button styles */
+button {
+  background-color: #384b38;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+} 
+
+
+/* Link styles */
+a {
+  text-decoration: none;
+}

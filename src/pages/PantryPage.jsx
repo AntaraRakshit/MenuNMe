@@ -8,10 +8,13 @@ import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 const categories = [
-    { name: 'Carbs', items: ['Rice', 'Roti', 'Something'] },
-    { name: 'Veggies', items: ['Carrot', 'Broccoli', 'Something'] },
-    { name: 'Protein', items: ['Eggs', 'Chicken', 'Something'] },
-    { name: 'Dal', items: ['dal', 'green moong', 'chana dal'] }
+    { name: 'Carbs', items: ['Rice', 'Roti', 'Something'], imagepath: 'src/images/Pantry_Carbs.jpg'},
+    { name: 'Veggies', items: ['Carrot', 'Broccoli', 'Something'], imagepath: 'src/images/Pantry_Veggies.jpg' },
+    { name: 'Protein', items: ['Eggs', 'Chicken', 'Something'], imagepath: 'src/images/Pantry_Protein.jpg' },
+    { name: 'Dal', items: ['dal', 'Split Peas', 'Something'], imagepath: 'src/images/Pantry_Dal.png' },
+    { name: 'Dairy', items: ['Milk', 'Cheese', 'Something'], imagepath: 'src/images/Pantry_Dairy.jpeg' },
+    { name: 'Spices', items: ['Salt', 'Pepper', 'Something'], imagepath: 'src/images/Pantry_Spices.jpeg' },
+    { name: 'Fruits', items: ['Apple', 'Banana', 'Something'], imagepath: 'src/images/Pantry_Fruits.jpg' },
 ];
 
 const PantryPage = () => {
