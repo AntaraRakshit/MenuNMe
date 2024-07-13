@@ -59,6 +59,7 @@ const GeneratedMealPlan = () => {
             <header className="menu-header">
                 <div className="menu-title">
                     <h1>Generated Meal Plan</h1>
+                    <h3>Placeholder Instruction</h3>
                 </div>
                 <input
                     type="text"

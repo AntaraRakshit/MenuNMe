@@ -2,7 +2,7 @@ import './NavBar.css';
 function NavBar(){
     return(
         <nav className='nav'>
-            <a href="/" className="site-title">Site Name</a>
+            
             <ul>
                 <li>
                     <a href="/pantry-page">Pantry Page</a>

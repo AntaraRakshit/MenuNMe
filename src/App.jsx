@@ -7,7 +7,7 @@ import PantryPage from './pages/PantryPage';
 import GeneratedMealPlan from './pages/GeneratedMealPlan';
 import SavedMealPlans from './pages/SavedMealPlans';
 import { MealplanProvider } from './contexts/MealplanContext';
-import './App.css';
+// import './App.css';
 
 function App() {
     return (

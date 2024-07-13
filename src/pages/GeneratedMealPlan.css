@@ -35,8 +35,9 @@
 }
 
 .recipe-details {
-  width: 100%;
+  width: 50;
   padding: 1rem;
+  color: white;
   overflow-y: auto;
   max-height: 50vh; /* Limit the height to avoid full page scroll */
 }

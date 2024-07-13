@@ -1,22 +1,21 @@
-h1 {
+/*h1 {
   color: #FFFFFF;
   font-family: system-ui;
   margin-left: 20px;
 }
-body {
-  background-color: #384b38;
-}
+
+
 label {
   color: #ffffff;
   font-family: system-ui;
   font-size: 20px;
   margin-left: 20px;
-  margin-top: 20px;
-}
+  margin-top: 20px;}
+
 button {
   background-color: #86C232;
   border-color: #ffffff;
-  color: #ffffff;
+  color: #000000;
   font-family: system-ui;
   font-size: 20px;
   font-weight: bold;
@@ -25,7 +24,7 @@ button {
   width: 140px;
 }
 textarea {
-  color: #222629;
+  color: #ffffff;
   font-family: system-ui;
   font-size: 20px;
   margin-left: 10px;

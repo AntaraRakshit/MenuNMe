@@ -1,5 +1,5 @@
 .daily-menu {
-    background-color: #ff9800;
+    
     padding: 1rem;
     margin: 0.5rem;
     border-radius: 8px;
@@ -7,7 +7,7 @@
 }
 
 .meal {
-    background-color: #03a9f4;
+    background-color: #000000;
     padding: 0.5rem;
     margin: 0.5rem 0;
     border-radius: 4px;

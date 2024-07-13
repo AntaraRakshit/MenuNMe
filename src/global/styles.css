@@ -1,8 +1,9 @@
-/* Global styles */
+/* 
+Global styles
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
-  background-color: #2252a5;
-  color: white;
+  background-color: red;
+  color: #384b38;
   margin: 0;
   padding: 0;
   display: flex;
@@ -10,17 +11,29 @@ body {
 }
 
 h1 {  
+  background-color: #384b38;
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #000;
+  font-family: system-ui;
+  margin-left: 20px;
+}
+
+label {
+  color: #ffffff;
+  font-family: system-ui;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
-
+*/
 /* Button styles */
-button {
+/* button {
   background-color: #384b38;
   color: #000000;
   border: 2px solid #000000;
@@ -35,10 +48,15 @@ button:hover {
   background-color: #000000;
   color: #ffffff;
   border-color: #ffffff;
-} 
+}  */
 
 
 /* Link styles */
-a {
+/* a {
   text-decoration: none;
 }
+
+p {
+  color: #ffffff;
+}
+ */

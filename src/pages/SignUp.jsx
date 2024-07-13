@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UserPool from "../configs/UserPool";
 import { CognitoUserAttribute, CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+// import '../App.css';
+import '../global/styles.css'
+
 
 const SignUp = () => {
     const [username, setUsername] = useState("");
