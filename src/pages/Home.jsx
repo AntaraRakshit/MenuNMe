@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import NavBar from '../components/NavBar';
-// import '../App.css'
-// import '../global/styles.css'
 
 const Home = () => {
     const { isAuthenticated, logout } = useAuth();
@@ -16,6 +14,7 @@ const Home = () => {
                 <div>
                     <h2>You are logged in!</h2>
                     <button onClick={logout}>Logout</button>
+                    <button onClick={logout}>Logout</button>
                 </div>
             ) : (
                 <div>
@@ -23,7 +22,7 @@ const Home = () => {
                         <button>Sign Up</button>
                     </Link>
                     <Link to="/login">
-                        <buttonOne>Login</buttonOne>
+                        <button>Login</button>
                     </Link>
                 </div>
             )}

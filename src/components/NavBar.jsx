@@ -5,10 +5,10 @@ function NavBar(){
             
             <ul>
                 <li>
-                    <a href="/pantry-page">Pantry Page</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/generated-meal-plan">Generated Meal Plan</a>
+                    <a href="/pantry-page">Pantry Page</a>
                 </li>
                 <li>
                     <a href="/saved-meal-plans">Saved Meal Plans</a>

@@ -3,6 +3,7 @@ import { AuthContext } from '../contexts/AuthContext'; // Import AuthContext
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import MealPlanCard from '../components/MealPlanCard'; // Import MealPlanCard
+import NavBar from '../components/NavBar';
 
 const SavedMealPlans = () => {
     const { user } = useContext(AuthContext); // Access the AuthContext to get the user
@@ -59,6 +60,7 @@ const SavedMealPlans = () => {
 
     return (
         <>
+        <NavBar />
             {isAuthenticated ? (
                 <div>
                     <h1>Saved Meal Plans</h1>
@@ -78,8 +80,11 @@ const SavedMealPlans = () => {
                             ))
                         ) : (
                             <p>No meal plans found.</p>
-                        )}
+                        )}                    
                     </div>
+                    <Link to="/">
+                        <button>Exit</button>
+                    </Link>
                 </div>
             ) : (
                 <div>

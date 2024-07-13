@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "../configs/UserPool";
-import '../global/styles.css'
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedSession = localStorage.getItem("session");
@@ -64,6 +66,7 @@ const Login = () => {
 
                 // Store session information
                 localStorage.setItem("session", JSON.stringify({ username, tokens: data.getIdToken().getJwtToken() }));
+                navigate('/');
             },
             onFailure: (err) => {
                 console.error("onFailure:", err);
@@ -78,21 +81,6 @@ const Login = () => {
                 setLoading(false);
             },
         });
-    };
-
-    const onLogout = () => {
-        const storedSession = localStorage.getItem("session");
-        if (storedSession) {
-            const session = JSON.parse(storedSession);
-            const cognitoUser = new CognitoUser({
-                Username: session.username,
-                Pool: UserPool,
-            });
-
-            cognitoUser.signOut();
-            localStorage.removeItem("session");
-            setSuccessMessage("Logged out successfully.");
-        }
     };
 
     return (
@@ -115,8 +103,7 @@ const Login = () => {
                 <button type="submit" disabled={loading}>Login</button>
             </form>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-            <button onClick={onLogout}>Logout</button>
+            {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}            
         </div>
     );
 };

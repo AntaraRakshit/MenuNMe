@@ -7,6 +7,8 @@ import { MealplanContext } from '../contexts/MealplanContext';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
+import NavBar from '../components/NavBar';
+
 const categories = [
     { name: 'Carbs', items: ['Rice', 'Roti', 'Something'], imagepath: 'src/images/Pantry_Carbs.jpg'},
     { name: 'Veggies', items: ['Carrot', 'Broccoli', 'Something'], imagepath: 'src/images/Pantry_Veggies.jpg' },
@@ -67,6 +69,7 @@ const PantryPage = () => {
 
     return (
         <>
+        <NavBar />
         {isAuthenticated?(
         <div className="pantry-page">
             <header className="pantry-header">

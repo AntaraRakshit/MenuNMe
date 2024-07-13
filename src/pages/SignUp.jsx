@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserPool from "../configs/UserPool";
 import { CognitoUserAttribute, CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-// import '../App.css';
+import { useNavigate } from 'react-router-dom';
 import '../global/styles.css'
 
 
@@ -15,6 +15,7 @@ const SignUp = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedSession = localStorage.getItem("session");
@@ -67,7 +68,7 @@ const SignUp = () => {
                 console.log(data);
                 setUser(data.user);
                 setErrorMessage("");
-                setSuccessMessage("Sign up successful! Please check your email for the confirmation code.");
+                setSuccessMessage("Sign up successful! Please check your email for the confirmation code.");                
             }
         });
     };
@@ -107,6 +108,7 @@ const SignUp = () => {
                         // Store session information
                         localStorage.setItem("session", JSON.stringify({ username, tokens: data.getIdToken().getJwtToken() }));
                         setIsConfirmed(true);
+                        navigate('/');
                     },
                     onFailure: (err) => {
                         console.error("onFailure:", err);

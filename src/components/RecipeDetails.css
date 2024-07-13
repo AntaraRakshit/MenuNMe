@@ -2,11 +2,11 @@
     width: 100%;
     padding: 1rem;
     overflow-y: auto;
-    max-height: 50vh; /* Limit the height to avoid full page scroll */
+    max-height: 50vh; /*Limit the height to avoid full page scroll*/
 }
 
 .recipe-details img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     border-radius: 8px;
 }

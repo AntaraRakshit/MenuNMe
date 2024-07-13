@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import './GeneratedMealPlan.css';
+
 import { MealplanContext } from '../contexts/MealplanContext';
 import { AuthContext } from '../contexts/AuthContext'; // Import AuthContext
 import DailyMenu from '../components/DailyMenu';
 import RecipeDetails from '../components/RecipeDetails';
+import './GeneratedMealPlan.css';
+
+import NavBar from '../components/NavBar';
+
 
 const GeneratedMealPlan = () => {
     const { responseData } = useContext(MealplanContext);
@@ -55,21 +59,13 @@ const GeneratedMealPlan = () => {
     }, [selectedRecipe]);
 
     return (
+        <>
+        <NavBar />
         <div className="meal-plan-page">
             <header className="menu-header">
                 <div className="menu-title">
                     <h1>Generated Meal Plan</h1>
                     <h3>Placeholder Instruction</h3>
-                </div>
-                <input
-                    type="text"
-                    className="meal-plan-name-input"
-                    placeholder="Enter meal plan name"
-                    value={mealPlanName}
-                    onChange={(e) => setMealPlanName(e.target.value)}
-                />
-                <div className="save-button-container">
-                    <button className="save-button" onClick={handleSaveClick}>Save</button>
                 </div>
             </header>
             <div className="daily-menus-container">
@@ -86,7 +82,18 @@ const GeneratedMealPlan = () => {
                     <RecipeDetails recipe={selectedRecipe} />
                 </div>
             )}
+            <input                
+                type="text"
+                // className="meal-plan-name-input"
+                placeholder="Enter meal plan name"
+                value={mealPlanName}
+                onChange={(e) => setMealPlanName(e.target.value)}
+                />
+            <div className="save-button-container">
+                <button className="save-button" onClick={handleSaveClick}>Save</button>
+            </div>
         </div>
+        </>
     );
 };
 
