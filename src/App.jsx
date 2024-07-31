@@ -7,22 +7,25 @@ import PantryPage from './pages/PantryPage';
 import GeneratedMealPlan from './pages/GeneratedMealPlan';
 import SavedMealPlans from './pages/SavedMealPlans';
 import { MealplanProvider } from './contexts/MealplanContext';
+import { AuthProvider } from './contexts/AuthContext';
 // import './App.css';
 
 function App() {
     return (
-        <MealplanProvider>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/pantry-page" element={<PantryPage />} />
-                    <Route path="/generated-meal-plan" element={<GeneratedMealPlan />} />
-                    <Route path="/saved-meal-plans" element={<SavedMealPlans />} />
-                </Routes>
-            </Router>
-        </MealplanProvider>
+        <AuthProvider>
+            <MealplanProvider>                
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/pantry-page" element={<PantryPage />} />
+                        <Route path="/generated-meal-plan" element={<GeneratedMealPlan />} />
+                        <Route path="/saved-meal-plans" element={<SavedMealPlans />} />
+                    </Routes>
+                </Router>                
+            </MealplanProvider>
+        </AuthProvider>
     );
 }
 

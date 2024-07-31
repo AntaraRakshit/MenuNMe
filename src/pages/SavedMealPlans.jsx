@@ -1,15 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../contexts/AuthContext'; // Import AuthContext
+import { AuthContext } from '../contexts/AuthContext';
 import { useAuth } from '../contexts/AuthContext';
-import { Link } from 'react-router-dom';
-import MealPlanCard from '../components/MealPlanCard'; // Import MealPlanCard
+import { useNavigate, Link } from 'react-router-dom';
+import MealPlanCard from '../components/MealPlanCard';
 import NavBar from '../components/NavBar';
+import { MealplanContext } from '../contexts/MealplanContext';
 
 const SavedMealPlans = () => {
-    const { user } = useContext(AuthContext); // Access the AuthContext to get the user
+    const { user } = useContext(AuthContext);
     const { isAuthenticated, logout } = useAuth();
+    const { setResponseData } = useContext(MealplanContext); // Access MealplanContext
     const [mealPlans, setMealPlans] = useState([]);
     const [responseMessage, setResponseMessage] = useState('');
+    const navigate = useNavigate();
 
     const fetchMealPlans = async () => {
         if (!user) {
@@ -35,13 +38,11 @@ const SavedMealPlans = () => {
             }
 
             const data = await response.json();
-            console.log('API Response:', data); // Log the API response
+            console.log('API Response:', data);
 
-            // Parse the body field from the response
             const parsedBody = JSON.parse(data.body);
             console.log('Parsed Body:', parsedBody);
 
-            // Assuming parsedBody is the actual meal plans array
             setMealPlans(parsedBody);
             setResponseMessage('');
         } catch (error) {
@@ -58,9 +59,14 @@ const SavedMealPlans = () => {
         }
     }, [user, isAuthenticated]);
 
+    const handleCardClick = (plan) => {
+        setResponseData(plan); // Update MealplanContext
+        navigate('/generated-meal-plan');
+    };
+
     return (
         <>
-        <NavBar />
+            <NavBar />
             {isAuthenticated ? (
                 <div>
                     <h1>Saved Meal Plans</h1>
@@ -69,18 +75,17 @@ const SavedMealPlans = () => {
                     <div>
                         {mealPlans.length > 0 ? (
                             mealPlans.map((plan, index) => (
-                                
-                                <MealPlanCard
-                                    key={index}
-                                    title={plan.mealPlanName}
-                                    fromDate={plan.from_date}
-                                    toDate={plan.to_date}
-                                    mealPlan={plan.mealPlan}
-                                />
+                                <div key={index} onClick={() => handleCardClick(plan)}>
+                                    <MealPlanCard
+                                        title={plan.mealPlanName}
+                                        fromDate={plan.from_date}
+                                        toDate={plan.to_date}                                        
+                                    />
+                                </div>
                             ))
                         ) : (
                             <p>No meal plans found.</p>
-                        )}                    
+                        )}
                     </div>
                     <Link to="/">
                         <button>Exit</button>

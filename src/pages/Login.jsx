@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "../configs/UserPool";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../contexts/AuthContext"; // Import useAuth from the context
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const {setUser, setIsAuthenticated} = useAuth(); // Access setIsAuthenticated and setUser
 
     useEffect(() => {
         const storedSession = localStorage.getItem("session");
@@ -28,10 +30,12 @@ const Login = () => {
 
                 if (session.isValid()) {
                     setSuccessMessage("Session is valid. You are logged in.");
+                    setIsAuthenticated(true);
+                    setUser(cognitoUser);
                 }
             });
         }
-    }, []);
+    }, [setIsAuthenticated, setUser]);
 
     const validateForm = () => {
         if (!username || !password) {
@@ -66,7 +70,9 @@ const Login = () => {
 
                 // Store session information
                 localStorage.setItem("session", JSON.stringify({ username, tokens: data.getIdToken().getJwtToken() }));
-                navigate('/');
+                setIsAuthenticated(true);
+                setUser(user);
+                navigate('/', { state: { from: 'auth-page' } });
             },
             onFailure: (err) => {
                 console.error("onFailure:", err);

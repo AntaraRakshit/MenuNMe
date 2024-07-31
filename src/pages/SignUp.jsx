@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import UserPool from "../configs/UserPool";
 import { CognitoUserAttribute, CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../contexts/AuthContext"; // Ensure to import the context
 import '../global/styles.css'
-
 
 const SignUp = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmationCode, setConfirmationCode] = useState("");
-    const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [isConfirmed, setIsConfirmed] = useState(false);
     const navigate = useNavigate();
+    const { setIsAuthenticated, setUser } = useAuth(); // Access the context
 
     useEffect(() => {
         const storedSession = localStorage.getItem("session");
@@ -34,10 +34,12 @@ const SignUp = () => {
 
                 if (session.isValid()) {
                     setSuccessMessage("Session is valid. You are logged in.");
+                    setIsAuthenticated(true);
+                    setUser(cognitoUser);
                 }
             });
         }
-    }, []);
+    }, [setIsAuthenticated, setUser]);
 
     const validateForm = () => {
         if (!username || !email || !password) {
@@ -107,8 +109,10 @@ const SignUp = () => {
 
                         // Store session information
                         localStorage.setItem("session", JSON.stringify({ username, tokens: data.getIdToken().getJwtToken() }));
-                        setIsConfirmed(true);
-                        navigate('/');
+                        setIsAuthenticated(true);
+                        setUser(cognitoUser);
+                        setIsConfirmed(true);                        
+                        navigate('/', { state: { from: 'auth-page' } });
                     },
                     onFailure: (err) => {
                         console.error("onFailure:", err);
@@ -141,7 +145,6 @@ const SignUp = () => {
         <div>
             {!isConfirmed && (
                 <>
-                
                     <form onSubmit={onSubmit}>
                         <label htmlFor="username">Username</label>
                         <input
@@ -164,7 +167,7 @@ const SignUp = () => {
                             onChange={(event) => setPassword(event.target.value)}
                             disabled={loading}
                         />
-                        <p>Password must contain at least 8 characters. Must conatin at least 1 capital letter, 1 number, 1 special character.</p>
+                        <p>Password must contain at least 8 characters. Must contain at least 1 capital letter, 1 number, and 1 special character.</p>
                         <button type="submit" disabled={loading}>Sign Up</button>
                     </form>
 

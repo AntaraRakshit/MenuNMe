@@ -5,25 +5,52 @@ import IngredientList from '../components/IngredientList';
 import { MealplanContext } from '../contexts/MealplanContext';
 
 import { useAuth } from '../contexts/AuthContext';
+import { AuthContext } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 import NavBar from '../components/NavBar';
 
 const categories = [
-    { name: 'Carbs', items: ['Rice', 'Roti', 'Something'], imagepath: 'src/images/Pantry_Carbs.jpg'},
-    { name: 'Veggies', items: ['Carrot', 'Broccoli', 'Something'], imagepath: 'src/images/Pantry_Veggies.jpg' },
-    { name: 'Protein', items: ['Eggs', 'Chicken', 'Something'], imagepath: 'src/images/Pantry_Protein.jpg' },
-    { name: 'Dal', items: ['dal', 'Split Peas', 'Something'], imagepath: 'src/images/Pantry_Dal.png' },
-    { name: 'Dairy', items: ['Milk', 'Cheese', 'Something'], imagepath: 'src/images/Pantry_Dairy.jpeg' },
-    { name: 'Spices', items: ['Salt', 'Pepper', 'Something'], imagepath: 'src/images/Pantry_Spices.jpeg' },
-    { name: 'Fruits', items: ['Apple', 'Banana', 'Something'], imagepath: 'src/images/Pantry_Fruits.jpg' },
+    { name: 'Carbs', 
+        items: ["flour", "rice", "poha", "pasta"],
+        imagepath: 'src/images/Pantry_Carbs.jpg'
+    },
+    { name: 'Veggies', 
+        items: ["beetroot", "bhindi (lady fingerokra)", "bottle gourd (lauki)", 
+            "brinjal (baingan eggsplant)", "broccoli", "cabbage", "cauliflower (gobi)", 
+            "drumstick", "green beans (french beans) ", "karela (bitter gourd pavakkai)", 
+            "mooli mullangi (radish)", "potato", "spinach ", "sweet potato"], 
+        imagepath: 'src/images/Pantry_Veggies.jpg' 
+    },
+    { name: 'Protein', 
+        items: ["chicken", "tofu", "soy (nuggets)", "fish", "eggs"], 
+        imagepath: 'src/images/Pantry_Protein.jpg'
+    },
+    { name: 'Dal', 
+        items: ["kabuli chana (white chickpeas)", "white urad dal", "masoor dal", 
+            "rajma (large kidney beans)", "green moong dal", "black urad dal", "kala chana (brown chickpeas)", "chana dal"], 
+            imagepath: 'src/images/Pantry_Dal.png' 
+    }
+    // { name: 'Dairy', items: ['Milk', 'Cheese', 'Something'], imagepath: 'src/images/Pantry_Dairy.jpeg' },
+    // { name: 'Spices', items: ['Salt', 'Pepper', 'Something'], imagepath: 'src/images/Pantry_Spices.jpeg' },
+    // { name: 'Fruits', items: ['Apple', 'Banana', 'Something'], imagepath: 'src/images/Pantry_Fruits.jpg' },
 ];
 
 const PantryPage = () => {
     const [selectedIngredients, setSelectedIngredients] = useState({});
     const { setResponseData } = useContext(MealplanContext);
     const { isAuthenticated, logout } = useAuth();
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const mealPlan = 
+    {
+        username:user,
+        mealPlanName:"",
+        mealPlan:{},
+        from:"",
+        to:""
+    }
 
     const handleIngredientChange = (category, item, isChecked) => {
         setSelectedIngredients((prevState) => {
@@ -52,7 +79,7 @@ const PantryPage = () => {
             const response = await fetch('https://0j5utt1jg5.execute-api.ap-south-1.amazonaws.com/test/create-mealplan', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload),
             });
@@ -60,8 +87,9 @@ const PantryPage = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            setResponseData(data); // Update the context with the response data
-            navigate('/generated-meal-plan'); // Navigate to the GeneratedMealPlan page
+            mealPlan.mealPlan = data
+            setResponseData(mealPlan); // Update the context with the response data
+            navigate('/generated-meal-plan', { state: { from: 'pantry-page' } }); // Navigate to the GeneratedMealPlan page
         } catch (error) {
             console.error('Error:', error);
         }

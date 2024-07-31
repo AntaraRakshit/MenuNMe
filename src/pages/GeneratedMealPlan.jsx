@@ -1,20 +1,24 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import { MealplanContext } from '../contexts/MealplanContext';
-import { AuthContext } from '../contexts/AuthContext'; // Import AuthContext
+import { AuthContext } from '../contexts/AuthContext';
 import DailyMenu from '../components/DailyMenu';
 import RecipeDetails from '../components/RecipeDetails';
 import './GeneratedMealPlan.css';
-
 import NavBar from '../components/NavBar';
 
-
 const GeneratedMealPlan = () => {
+    const location = useLocation();
+    const fromPantryPage = location.state?.from === 'pantry-page';
+
     const { responseData } = useContext(MealplanContext);
-    const { user } = useContext(AuthContext); // Access the AuthContext to get the user
-    const mealPlan = responseData ? responseData.meal_plan : null;
+    // responseData.mealPlan = JSON.parse(responseData.mealPlan);
+    const { user } = useContext(AuthContext);
+    
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+
     const [mealPlanName, setMealPlanName] = useState('');
+    
     const recipeContainerRef = useRef(null);
 
     const handleDishClick = (recipe) => {
@@ -30,7 +34,7 @@ const GeneratedMealPlan = () => {
         const payload = {
             username: user ? user.getUsername() : null,
             mealPlanName,
-            mealPlan,
+            mealPlan: responseData.mealPlan,
             selectedRecipe
         };
 
@@ -60,39 +64,44 @@ const GeneratedMealPlan = () => {
 
     return (
         <>
-        <NavBar />
-        <div className="meal-plan-page">
-            <header className="menu-header">
-                <div className="menu-title">
-                    <h1>Generated Meal Plan</h1>
-                    <h3>Placeholder Instruction</h3>
+            <NavBar />
+            <div className="meal-plan-page">
+                <header className="menu-header">
+                    <div className="menu-title">
+                        {
+                        responseData.mealPlanName ? <h1>{responseData.mealPlanName}</h1> : <h1>Generated Meal Plan</h1>
+                        }
+                        <h3>Placeholder Instruction</h3>
+                    </div>
+                </header>
+                <div className="daily-menus-container">
+                    {responseData.mealPlan ? (
+                        Object.keys(JSON.parse(responseData.mealPlan)).map((day) => (
+                            <DailyMenu key={day} day={day} meals={JSON.parse(responseData.mealPlan)[day]} onDishClick={handleDishClick} />
+                        ))
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </div>
-            </header>
-            <div className="daily-menus-container">
-                {mealPlan ? (
-                    Object.keys(mealPlan).map((day) => (
-                        <DailyMenu key={day} day={day} meals={mealPlan[day]} onDishClick={handleDishClick} />
-                    ))
-                ) : (
-                    <p>Loading...</p>
+                {selectedRecipe && (
+                    <div className="recipe-save-container" ref={recipeContainerRef}>
+                        <RecipeDetails recipe={selectedRecipe} />
+                    </div>
+                )}
+                {fromPantryPage && (
+                    <>
+                        <input
+                            type="text"
+                            placeholder="Enter meal plan name"
+                            value={mealPlanName}
+                            onChange={(e) => setMealPlanName(e.target.value)}
+                        />
+                        <div className="save-button-container">
+                            <button className="save-button" onClick={handleSaveClick}>Save</button>
+                        </div>
+                    </>
                 )}
             </div>
-            {selectedRecipe && (
-                <div className="recipe-save-container" ref={recipeContainerRef}>
-                    <RecipeDetails recipe={selectedRecipe} />
-                </div>
-            )}
-            <input                
-                type="text"
-                // className="meal-plan-name-input"
-                placeholder="Enter meal plan name"
-                value={mealPlanName}
-                onChange={(e) => setMealPlanName(e.target.value)}
-                />
-            <div className="save-button-container">
-                <button className="save-button" onClick={handleSaveClick}>Save</button>
-            </div>
-        </div>
         </>
     );
 };

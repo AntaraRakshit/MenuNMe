@@ -6,7 +6,8 @@ const IngredientList = ({ categories, onIngredientChange }) => {
     return (
         <div className="ingredient-list">
             {categories.map((category) => (
-                <IngredientCategory                    
+                <IngredientCategory
+                    key={category.name} // Add this line to provide a unique key
                     category={category.name}
                     items={category.items}
                     catImage={category.imagepath}

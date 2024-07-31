@@ -4,7 +4,8 @@ import { useAuth } from '../contexts/AuthContext';
 import NavBar from '../components/NavBar';
 
 const Home = () => {
-    const { isAuthenticated, logout } = useAuth();
+    const { isAuthenticated } = useAuth();
+    console.log(isAuthenticated)
 
     return (
         <>
@@ -13,8 +14,14 @@ const Home = () => {
             {isAuthenticated ? (
                 <div>
                     <h2>You are logged in!</h2>
-                    <button onClick={logout}>Logout</button>
-                    <button onClick={logout}>Logout</button>
+                    <div>
+                        <Link to="/pantry-page">
+                            <button>Pantry Page</button>
+                        </Link>
+                        <Link to="/saved-meal-plans">
+                            <button>My Saved Menus</button>
+                        </Link>
+                    </div>
                 </div>
             ) : (
                 <div>
