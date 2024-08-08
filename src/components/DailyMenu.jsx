@@ -13,7 +13,7 @@ const DailyMenu = ({ day, meals, onDishClick }) => {
                     <ul className="daily-menu-content">
                         {Object.keys(meals[mealType]).map((dishType, idx) => {
                             const dish = meals[mealType][dishType];
-                            return dish ? (
+                            return dish && dish.TranslatedRecipeName ? (
                                 <li key={idx} onClick={() => onDishClick(dish)}>
                                     {dish.TranslatedRecipeName}
                                 </li>

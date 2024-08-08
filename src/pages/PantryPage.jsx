@@ -87,7 +87,7 @@ const PantryPage = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            mealPlan.mealPlan = data
+            mealPlan.mealPlan = data.body
             setResponseData(mealPlan); // Update the context with the response data
             navigate('/generated-meal-plan', { state: { from: 'pantry-page' } }); // Navigate to the GeneratedMealPlan page
         } catch (error) {

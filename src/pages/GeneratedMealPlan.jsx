@@ -13,6 +13,7 @@ const GeneratedMealPlan = () => {
 
     const { responseData } = useContext(MealplanContext);
     // responseData.mealPlan = JSON.parse(responseData.mealPlan);
+    console.log(responseData)
     const { user } = useContext(AuthContext);
     
     const [selectedRecipe, setSelectedRecipe] = useState(null);
