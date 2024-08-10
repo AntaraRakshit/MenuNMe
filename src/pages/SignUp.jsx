@@ -15,7 +15,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [isConfirmed, setIsConfirmed] = useState(false);
     const navigate = useNavigate();
-    const { setIsAuthenticated, setUser } = useAuth(); // Access the context
+    const { setIsAuthenticated, user, setUser } = useAuth(); // Access the context
 
     useEffect(() => {
         const storedSession = localStorage.getItem("session");
