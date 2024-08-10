@@ -10,6 +10,17 @@ const Home = () => {
     return (
         <>
         <NavBar />
+            <header>
+                <div id="top-header">
+                    <div id="logo">
+                        <img src="images/Header_Img.png" />
+                    </div>
+                
+                </div>
+                
+                <div id="header-image-menu">
+                </div>
+            </header>
             <h1>Welcome to Menu & Me!</h1>
             {isAuthenticated ? (
                 <div>
