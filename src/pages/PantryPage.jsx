@@ -48,7 +48,7 @@ const PantryPage = () => {
             }));
             
             setCategories(mappedCategories);
-            console.log('Categories:', mappedCategories);
+            console.log('Categories:', categories);
     
         } catch (error) {
             console.error('Error:', error);
@@ -57,12 +57,12 @@ const PantryPage = () => {
     };
 
     useEffect(() => {
-        console.log('User:', user);
-        console.log('Is Authenticated:', isAuthenticated);
+        // console.log('User:', user);
+        // console.log('Is Authenticated:', isAuthenticated);
         if (user) {
             fetchIngredients();
         }
-    }, [user, isAuthenticated, fetchIngredients]); // Added fetchIngredients to dependency array
+    }, [user, isAuthenticated]); // Added fetchIngredients to dependency array
 
     const mealPlan = {
         username: user,
@@ -94,7 +94,8 @@ const PantryPage = () => {
         const payload = {
             ingredients: selectedIngredients
         };
-
+        setResponseData({});
+        navigate('/generated-meal-plan', { state: { from: 'pantry-page' } }); // Navigate to the GeneratedMealPlan page
         try {
             const response = await fetch('https://0j5utt1jg5.execute-api.ap-south-1.amazonaws.com/test/create-mealplan', {
                 method: 'POST',
