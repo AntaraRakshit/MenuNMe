@@ -1,5 +1,4 @@
-/* NavBar.css */
-.nav {    
+.nav {
     color: white;
     display: flex;
     justify-content: space-between;
@@ -10,6 +9,12 @@
     width: 100%;
     z-index: 1000;
     box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    border-bottom: 2px solid #000; /* Adds a solid line under the navbar */
+}
+
+/* Ensure content does not tuck under the navbar */
+.body-content {
+    margin-top: 70px; /* Adjust this value based on the total height of your navbar */
 }
 
 .nav .site-title {
